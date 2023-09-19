@@ -1,0 +1,1 @@
+vegeta attack -targets $1 -root-certs ca.pem -duration=2s -rate=100 | vegeta report
