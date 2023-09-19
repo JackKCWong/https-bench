@@ -8,6 +8,7 @@ Both https servers use the same self-signed cert and key. The target endpoint si
 
 ## results
 
+```
 [lighthouse@VM-20-16-centos https-bench]$ ./atk req.http
 Requests      [total, rate, throughput]  1000, 100.10, 99.69
 Duration      [total, attack, wait]      10.031519156s, 9.990400793s, 41.118363ms
@@ -17,7 +18,9 @@ Bytes Out     [total, mean]              1204000, 1204.00
 Success       [ratio]                    100.00%
 Status Codes  [code:count]               200:1000
 Error Set:
+```
 
+```
 [lighthouse@VM-20-16-centos https-bench]$ ./atk req.http
 Requests      [total, rate, throughput]  1000, 100.10, 100.10
 Duration      [total, attack, wait]      9.990375038s, 9.990063312s, 311.726µs
@@ -27,3 +30,4 @@ Bytes Out     [total, mean]              1204000, 1204.00
 Success       [ratio]                    100.00%
 Status Codes  [code:count]               200:1000
 Error Set:
+```
