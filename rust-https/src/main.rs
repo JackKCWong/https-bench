@@ -1,11 +1,9 @@
 use std::{fs::File, io::BufReader};
 
-use actix_files::Files;
 use actix_web::{
-    http::header::ContentType, middleware, web, App, HttpRequest, HttpResponse, HttpServer,
+    App, HttpResponse, HttpServer,
     web::{Bytes,post}
 };
-use log::debug;
 use rustls::{Certificate, PrivateKey, ServerConfig};
 use rustls_pemfile::{certs, pkcs8_private_keys};
 

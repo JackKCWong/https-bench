@@ -9,25 +9,27 @@ Both https servers use the same self-signed cert and key. The target endpoint si
 ## results
 
 ```
+[lighthouse@VM-20-16-centos https-bench]$ (cd rust-https && cargo run)
 [lighthouse@VM-20-16-centos https-bench]$ ./atk req.http
-Requests      [total, rate, throughput]  1000, 100.10, 99.69
-Duration      [total, attack, wait]      10.031519156s, 9.990400793s, 41.118363ms
-Latencies     [mean, 50, 95, 99, max]    10.160239ms, 10.454684ms, 10.616548ms, 10.754223ms, 41.118363ms
-Bytes In      [total, mean]              1204000, 1204.00
-Bytes Out     [total, mean]              1204000, 1204.00
+Requests      [total, rate, throughput]  30000, 100.00, 99.99
+Duration      [total, attack, wait]      5m0.030966866s, 4m59.989786803s, 41.180063ms
+Latencies     [mean, 50, 95, 99, max]    10.140154ms, 10.02219ms, 10.992857ms, 11.35211ms, 41.180063ms
+Bytes In      [total, mean]              36120000, 1204.00
+Bytes Out     [total, mean]              36120000, 1204.00
 Success       [ratio]                    100.00%
-Status Codes  [code:count]               200:1000
+Status Codes  [code:count]               200:30000
 Error Set:
 ```
 
 ```
+[lighthouse@VM-20-16-centos https-bench]$ (cd go-https && go run main.go)
 [lighthouse@VM-20-16-centos https-bench]$ ./atk req.http
-Requests      [total, rate, throughput]  1000, 100.10, 100.10
-Duration      [total, attack, wait]      9.990375038s, 9.990063312s, 311.726µs
-Latencies     [mean, 50, 95, 99, max]    363.637µs, 351.781µs, 453.434µs, 558.39µs, 4.333425ms
-Bytes In      [total, mean]              1204000, 1204.00
-Bytes Out     [total, mean]              1204000, 1204.00
+Requests      [total, rate, throughput]  30000, 100.00, 100.00
+Duration      [total, attack, wait]      4m59.990345346s, 4m59.989949216s, 396.13µs
+Latencies     [mean, 50, 95, 99, max]    397.004µs, 382.491µs, 496.136µs, 808.992µs, 17.974324ms
+Bytes In      [total, mean]              36120000, 1204.00
+Bytes Out     [total, mean]              36120000, 1204.00
 Success       [ratio]                    100.00%
-Status Codes  [code:count]               200:1000
+Status Codes  [code:count]               200:30000
 Error Set:
 ```
