@@ -1,20 +1,26 @@
-use std::{fs::File, io::BufReader};
+use std::{
+    fs::File,
+    io::{self, BufReader}, str::FromStr,
+};
 
 use actix_files::Files;
 use actix_web::{
-    http::header::ContentType, middleware, web, App, HttpRequest, HttpResponse, HttpServer,
-    web::{Bytes,post}
+    http::header::ContentType,
+    middleware,
+    web::{self, post, Buf, Bytes},
+    App, HttpRequest, HttpResponse, HttpServer,
 };
 use log::debug;
 use rustls::{Certificate, PrivateKey, ServerConfig};
 use rustls_pemfile::{certs, pkcs8_private_keys};
+use sha2::{Digest, Sha256};
 
 /// simple handle
 async fn index(bytes: Bytes) -> std::io::Result<HttpResponse> {
-    match String::from_utf8(bytes.to_vec()) {
-        Ok(text) => Ok(HttpResponse::Ok().body(text)),
-        Err(_) => Ok(HttpResponse::BadRequest().into())
-    }
+    let mut sha = Sha256::new();
+    io::copy(&mut bytes.reader(), &mut sha)?;
+    let r = sha.finalize();
+    Ok(HttpResponse::Ok().body(hex::encode(r)))
 }
 
 #[actix_web::main]
